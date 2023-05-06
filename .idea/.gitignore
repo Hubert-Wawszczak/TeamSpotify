@@ -1,3 +1,18 @@
+# Default ignored files
+/shelf/
+/TeamSpotify.iml
+/misc.xml
+/modules.xml
+/vcs.xml
+/workspace.xml
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+/inspectionProfiles/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -131,4 +146,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /.idea/
-!/.idea/.gitignore
+
