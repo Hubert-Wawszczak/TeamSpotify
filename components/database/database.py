@@ -94,3 +94,31 @@ class Database:
         values = (room_id,)
         self.cursor.execute(query, values)
         self.db.commit()
+
+    def get_playlist_item_by_id(self, item_id):
+        query = "SELECT * FROM lista_odtawrzania WHERE id = %s"
+        values = (item_id,)
+        self.cursor.execute(query, values)
+        item = self.cursor.fetchone()
+        return item
+
+    def create_playlist_item(self, item):
+        query = "INSERT INTO lista_odtawrzania (path_to_music) VALUES (%s)"
+        values = (item.path_to_music,)
+        self.cursor.execute(query, values)
+        item_id = self.cursor.lastrowid
+        self.db.commit()
+        return item_id
+
+    def update_playlist_item(self, item_id, item):
+        query = "UPDATE lista_odtawrzania SET path_to_music = %s WHERE id = %s"
+        values = (item.path_to_music, item_id)
+        self.cursor.execute(query, values)
+        self.db.commit()
+
+    def delete_playlist_item(self, item_id):
+        query = "DELETE FROM lista_odtawrzania WHERE id = %s"
+        values = (item_id,)
+        self.cursor.execute(query, values)
+        self.db.commit()
+
