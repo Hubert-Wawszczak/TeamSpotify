@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+log
 # C extensions
 *.so
 .idea\
@@ -132,3 +132,4 @@ dmypy.json
 .pyre/
 /.idea/
 !/.idea/.gitignore
+!/log

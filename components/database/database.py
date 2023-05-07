@@ -26,3 +26,71 @@ class Database:
         user_id = self.cursor.lastrowid
         self.db.commit()
         return user_id
+
+    def get_room_by_id(self, room_id):
+        query = "SELECT * FROM Room WHERE id = %s"
+        values = (room_id,)
+        self.cursor.execute(query, values)
+        room = self.cursor.fetchone()
+        return room
+
+    def get_room_by_name(self, room_name):
+        query = "SELECT * FROM Room WHERE nazwa = %s"
+        values = (room_name,)
+        self.cursor.execute(query, values)
+        room = self.cursor.fetchone()
+        return room
+
+    def create_room(self, room):
+        query = "INSERT INTO Room (nazwa, haslo) VALUES (%s, %s)"
+        values = (room.nazwa, room.haslo)
+        self.cursor.execute(query, values)
+        room_id = self.cursor.lastrowid
+        self.db.commit()
+        return room_id
+
+    def update_room(self, room_id, room):
+        query = "UPDATE Room SET nazwa = %s, haslo = %s WHERE id = %s"
+        values = (room.nazwa, room.haslo, room_id)
+        self.cursor.execute(query, values)
+        self.db.commit()
+
+    def delete_room(self, room_id):
+        query = "DELETE FROM Room WHERE id = %s"
+        values = (room_id,)
+        self.cursor.execute(query, values)
+        self.db.commit()
+
+    def get_room_by_id(self, room_id):
+        query = "SELECT * FROM Room WHERE id = %s"
+        values = (room_id,)
+        self.cursor.execute(query, values)
+        room = self.cursor.fetchone()
+        return room
+
+    def get_room_by_name(self, room_name):
+        query = "SELECT * FROM Room WHERE nazwa = %s"
+        values = (room_name,)
+        self.cursor.execute(query, values)
+        room = self.cursor.fetchone()
+        return room
+
+    def create_room(self, room):
+        query = "INSERT INTO Room (nazwa, haslo) VALUES (%s, %s)"
+        values = (room.nazwa, room.haslo)
+        self.cursor.execute(query, values)
+        room_id = self.cursor.lastrowid
+        self.db.commit()
+        return room_id
+
+    def update_room(self, room_id, room):
+        query = "UPDATE Room SET nazwa = %s, haslo = %s WHERE id = %s"
+        values = (room.nazwa, room.haslo, room_id)
+        self.cursor.execute(query, values)
+        self.db.commit()
+
+    def delete_room(self, room_id):
+        query = "DELETE FROM Room WHERE id = %s"
+        values = (room_id,)
+        self.cursor.execute(query, values)
+        self.db.commit()
