@@ -2,7 +2,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from components.database.database import Database
 
-app = FastAPI()
+
+router = APIRouter()
 db = Database()
 
 
@@ -10,7 +11,7 @@ class PlaylistItem(BaseModel):
     path_to_music: str
 
 
-@app.get("/playlist/{item_id}")
+@router.get("/playlist/{item_id}")
 def get_playlist_item(item_id: int):
     item = db.get_playlist_item_by_id(item_id)
     if item:
@@ -19,13 +20,13 @@ def get_playlist_item(item_id: int):
         raise HTTPException(status_code=404, detail="Item not found")
 
 
-@app.post("/playlist")
+@router.post("/playlist")
 def create_playlist_item(item: PlaylistItem):
     item_id = db.create_playlist_item(item)
     return {"item_id": item_id}
 
 
-@app.put("/playlist/{item_id}")
+@router.put("/playlist/{item_id}")
 def update_playlist_item(item_id: int, item: PlaylistItem):
     existing_item = db.get_playlist_item_by_id(item_id)
     if existing_item:
@@ -35,7 +36,7 @@ def update_playlist_item(item_id: int, item: PlaylistItem):
         raise HTTPException(status_code=404, detail="Item not found")
 
 
-@app.delete("/playlist/{item_id}")
+@router.delete("/playlist/{item_id}")
 def delete_playlist_item(item_id: int):
     existing_item = db.get_playlist_item_by_id(item_id)
     if existing_item:
@@ -43,3 +44,6 @@ def delete_playlist_item(item_id: int):
         return {"message": "Item deleted"}
     else:
         raise HTTPException(status_code=404, detail="Item not found")
+
+
+
