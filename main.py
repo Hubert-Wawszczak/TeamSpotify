@@ -12,7 +12,7 @@ app.include_router(user_router, prefix="/users")
 app.include_router(downloader_app, prefix="/downloader")
 app.include_router(room_router, prefix="/rooms")
 app.include_router(playlist_router, prefix="/playlist")
-app.include_router(player_router, prefix="player")
+app.include_router(player_router, prefix="/player")
 
 
 
